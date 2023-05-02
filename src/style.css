@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.studentList{
+    width: 400px;
+    margin: 50px auto;
+    background: #3498db;
+}
+.studentList .student{
+    padding: 20px;
+    border-bottom: 1px solid;
+    color: #fff;
+    font-size: 22px;
+}
+.studentList .student span{
+    width: 85%;
+    display: inline-block;
+}
+.studentList .formAdd{
+    width: 75%;
+    margin: 0 auto;
+}
+.studentList .formAdd input{
+    width: 100%;
+    padding: 15px;
+    margin: 5px ;
+    font-size: 20px;
+    border: none;
+    border-radius: 15px;
+}
+.studentList .student span.complete{
+    text-decoration: line-through;
+}
+.studentList .formEdit{
+    width: 50%;
+}
+.studentList .formEdit input{
+    width: 100%;
+    padding:  10px;
+    border: none;
+    margin: 3px 0px 3px 10px;
+    font-size: 18px;
+}
