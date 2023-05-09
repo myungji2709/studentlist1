@@ -3,86 +3,97 @@ import Student from "./Student1";
 import uuid from "react-uuid";
 import { useState } from "react";
 import Formedit from "./Formedit";
+import FourButton from "./4button";
+const getlist = (stulist, flag) => {
+    if (flag == "fillAll") {
+        return stulist;
+    } else if (flag == "fillChecked") {
+        return stulist.filter((item) => item.isComplete);
+    } else if (flag == "fillNoChecked") {
+        return stulist.filter((item) => !item.isComplete);
+    } else {
+        return stulist;
+    }
+};
 export default function Studentlist1() {
+    const [flag, setFlag] = useState("fillAll");
+    const [editID, setEditID] = useState("");
     const [list, setList] = useState([
         {
             id: 1,
             name: "Lê Văn Tí",
             isComplete: false,
-            isEdit: false,
         },
         {
             id: 2,
             name: "Lê Văn Sửu",
             isComplete: false,
-            isEdit: false,
         },
         {
             id: 3,
             name: "Lê Văn Dần",
             isComplete: false,
-            isEdit: false,
         },
     ]);
-    const [listsave, setLS] = useState(() => {
-        let localList;
-        if (localStorage.getItem("list")) {
-            localList = JSON.parse(localStorage.getItem("list"));
-        } else {
-            localList = list;
-        }
-        return localList;
-    });
     const themMoi = (tenMoi) => {
-        const newList = [
-            ...listsave,
-            { id: uuid(), name: tenMoi, isComplete: false, isEdit: false },
-        ];
-        localStorage.setItem("list", JSON.stringify(newList));
-        setLS(newList);
+        setList([...list, { id: uuid(), name: tenMoi, isComplete: false }]);
     };
     const xoa = (id) => {
-        const dsMoi = listsave.filter((stu) => stu.id !== id);
-        localStorage.setItem("list", JSON.stringify(dsMoi));
-        setLS(dsMoi);
+        const dsMoi = list.filter((stu) => stu.id !== id);
+        setList(dsMoi);
     };
     const toggle_complete = (id) => {
-        setLS(
-            listsave.map((value) =>
+        setList(
+            list.map((value) =>
                 value.id === id ? { ...value, isComplete: !value.isComplete } : value
             )
         );
     };
     const toggle_edit = (id) => {
-        setLS(
-            listsave.map((value) =>
-                value.id === id ? { ...value, isEdit: !value.isEdit } : value
-            )
-        );
+        setEditID(id);
     };
     const editList = (id, name) => {
-        setLS(
-            listsave.map((value) =>
-                value.id === id ? { ...value, name: name, isEdit: false } : value
-            )
+        setList(
+            list.map((value) => (value.id === id ? { ...value, name: name } : value))
         );
+        setEditID("");
+    };
+    const fillAll = () => {
+        setFlag("fillAll");
+    };
+    const fillChecked = () => {
+        setFlag("fillChecked");
+    };
+    const fillNoChecked = () => {
+        setFlag("fillNoChecked");
+    };
+    const XoaChecked = () => {
+        const dsCheck = list.filter((stu) => !stu.isComplete);
+        setList(dsCheck);
     };
     return (
         <div className="studentList">
             <Formadd1 themmoi={themMoi} />
-            {listsave.map((value, index) =>
-                value.isEdit ? (
-                    <Formedit value={value} key={index} editList={editList} />
-                ) : (
-                    <Student
-                        student={value}
-                        key={index}
-                        xoa={xoa}
-                        toggle_complete={toggle_complete}
-                        toggle_edit={toggle_edit}
-                    />
-                )
-            )}
+            {getlist(list, flag).map((value, index) => (
+                // value.isEdit ? (
+                //     <Formedit value={value} key={index} editList={editList} />
+                // ) /// cách 1
+                <Student
+                    student={value}
+                    key={index}
+                    xoa={xoa}
+                    toggle_complete={toggle_complete}
+                    toggle_edit={toggle_edit}
+                    editID={editID}
+                    editList={editList}
+                />
+            ))}
+            <FourButton
+                fillAll={fillAll}
+                fillChecked={fillChecked}
+                fillNoChecked={fillNoChecked}
+                XoaChecked={XoaChecked}
+            />
         </div>
     );
 }

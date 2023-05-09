@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 .studentList{
-    width: 400px;
+    width: 800px;
     margin: 50px auto;
     background: #3498db;
 }
@@ -15,8 +15,10 @@
     font-size: 22px;
 }
 .studentList .student span{
-    width: 85%;
+    width: 90%;
     display: inline-block;
+    padding-left: 30px;
+    cursor: pointer;
 }
 .studentList .formAdd{
     width: 75%;
@@ -30,9 +32,6 @@
     border: none;
     border-radius: 15px;
 }
-.studentList .student span.complete{
-    text-decoration: line-through;
-}
 .studentList .formEdit{
     width: 50%;
 }
@@ -42,4 +41,18 @@
     border: none;
     margin: 3px 0px 3px 10px;
     font-size: 18px;
+}
+.studentList .fourButton {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 35px 0px;
+}
+.studentList .fourButton button {
+    width: 150px;
+    padding: 10px 5px;
+    border: none;
+    font-size: 15px;
+    background: #1abc9c;
+    color: #fff;
 }

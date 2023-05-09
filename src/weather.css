@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.weather {
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background: linear-gradient(45deg,#EE5A24 ,#5f27cd);
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.weather .nhap{
+    width: 40%;
+    margin: 0 auto;
+}
+.weather .nhap input{
+    width: 100%;
+    margin: 30px 0 0 0;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    text-align: left;
+    font-size: 20px;
+    color: #fff;
+    background: black;
+    box-shadow: #f7b731 0px 3px;
+}
+.weather .hienthi{
+    width: 100%;
+    margin-top: 0px;
+    text-align: center;
+    padding: 50px 0px;
+}
+.weather .hienthi .city{
+    font-size: 45px;
+}
+.weather .hienthi .nhietdo{
+    font-size: 100px;
+    text-shadow: #000 0px 7px;
+    padding: 70px 0px;
+}
+.weather .hienthi .troi{
+    font-size: 40px;
+    font-style: italic;
+}
+.weather .hienthi img{
+    width: 90px;
+}
